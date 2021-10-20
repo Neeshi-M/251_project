@@ -1,0 +1,15 @@
+ {% extends 'myapp/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<h3 style="color: indigo;">Upload Grades</h3>
+ <br>
+ <form action="{% url 'uploadcsv' assignment_id %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <p style="color: indigo;font-size: large;margin-left: 1%;"> Grades File: <input type="file" name="csv_file" style="margin-left: 2%;" > </p>
+    <input type="submit" value="Upload" style="margin-left: 10%;">
+</form>
+
+
+{% endblock %}

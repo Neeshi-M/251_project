@@ -1,0 +1,25 @@
+{% extends 'myapp/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+    <h1>{{course.course_name}}</h1>
+    <p> created by {{course.user}} </p>
+    
+    {% if user in course.users_enrolled.all %}
+        <p> You are enrolled in this course ({{course.course_name}}) </p>
+        <h5> Assignments of this course </h5>
+        {% for a in assignments %}
+  		<br>
+  		<li><a href = "{% url 'viewAssignment' a.id %}" class="btn" style="color: white; background-color:blue;"type="submit"; id="header-links" > {{a.title}}</a> </li> 
+  		{% endfor %}
+        
+    {% endif %}
+    {%if user.is_authenticated%}  
+    {% if user  not in course.users_enrolled.all %}
+        <h5>
+            <a href="{% url 'sendaddrequest' course.id %} "class="btn" style="color: white; background-color:green;"type="submit"; id="header-links" >send add request</a>
+        </h5>
+     {% endif %}
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'myapp/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<h3 style="color: darkblue;">Create New Assignment</h3><br>
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <ul>
+        <li style="color: navy;font-size: large;"> Title: {{form.title}}</li>
+        <br>
+        <li style="color: navy;font-size: large;"> Choose file: {{form.uploadfile}}</li>
+        <br>
+        <li style="color: navy;font-size: large;"> Total Marks: {{form.totalmarks}}</li>
+        <br>
+    </ul>
+    <input type="submit" value="Submit">
+</form>
+{% endblock %}

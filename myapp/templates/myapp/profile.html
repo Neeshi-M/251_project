@@ -1,0 +1,13 @@
+{% extends 'myapp/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+    
+{% block content %}
+    <div class="container">
+        <br>
+        <br>
+        <p style="font-size: large;"><mark style="color: indigo;">Name</mark> : {{user.first_name}} {{user.last_name}} (@ {{user.username}})</p>
+        <br>
+        <p style="font-size: large;"><mark style="color: indigo;">Email Address</mark> : {{user.email}}</p>
+
+{% endblock %}

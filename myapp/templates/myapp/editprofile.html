@@ -1,0 +1,20 @@
+{% extends 'myapp/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<h3 style="color: indigo;">Edit Profile</h3>
+    
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <ul>
+        <li style="color: navy;font-size: large;"> First Name: {{form.newfirstname}}</li>
+        <br>
+        <li style="color: navy;font-size: large;"> Email     :<mark style="margin-left: 2%;"> {{form.newemail}}</mark></li>
+        <br>
+        <li style="color: navy;font-size: large;"> Last Name : {{form.newlastname}}</li>
+        <br>
+    </ul>
+    <input type="submit" value="Submit" style="margin-left: 12%;">
+</form>
+{% endblock %}

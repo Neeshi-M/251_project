@@ -1,0 +1,45 @@
+{% extends 'myapp/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+        <h1 style="font-family: sans-serif;">{{course.course_name}}</h1>
+        <h3 style="color: black;text-align: left;text-shadow: 2px 2px 5px red;">Add Requests</h3>
+        <ul>
+        {% for add_request in all_add_requests %}
+        <h5>
+            <li>Request from   {{ add_request.from_user }}<a href="{% url 'acceptaddrequest' add_request.id %}" class="btn" style="color: white; background-color:green;"type="submit"; id="header-links" >accept</a></li>
+        </h5>
+        <br>
+        {% endfor %}
+        </ul>
+        {% if user == course.user %}
+        <h3 style="color: black;text-align: left;text-shadow: 2px 2px 5px red;">Enrolled Users</h5>
+            <ul>
+        	{% for u in course.users_enrolled.all %}
+                {% if u == user %}
+                <br>
+                <p><marker style="color: indigo;">Creater </marker>
+  		        <li><marker style="color: indigo;">Username </marker> : {{u.username}} </li> 
+                <li><marker style="color: indigo;">Email Address  </marker>  : {{u.email}}</li>
+                {% else %}
+  		        <br>
+  		        <li><marker style="color: indigo;">Username </marker> : {{u.username}} </li> 
+                <li><marker style="color: indigo;">Email Address  </marker>  : {{u.email}}</li>
+                {% endif %}
+  		        {% endfor %}
+	   </ul>
+       <br>
+	   
+    	    <h3 style="color: black;text-align: left;text-shadow: 2px 2px 5px red;">Existing assignments</h5>
+            <ul>
+        	{% for a in assignments %}
+  		<br>
+  		<li><a href = "{% url 'viewAssignment' a.id %}" class="btn" style="color: white; background-color:blue;"type="submit"; id="header-links" > {{a.title}}</a> </li> 
+  		{% endfor %}
+	   </ul>
+       <br>
+	   <a href="{% url 'addassignment' course.id %}"class="btn" style="color: white; background-color:salmon;"type="submit"; id="header-links" >add new assignment</a>
+    {% endif %}   
+
+{% endblock %}

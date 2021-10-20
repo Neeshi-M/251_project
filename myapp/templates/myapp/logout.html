@@ -1,0 +1,12 @@
+{% extends 'myapp/base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+    <div class="container">
+        <br><br>
+        <h3 style="color: black;text-align: center;font-family:cursive;">You have been Logged out</h3>
+        <br><br>
+        <h5 style="text-align:center ;"><a href="{% url 'login' %}"class="btn" style="color: white; background-color: orangered; margin-left: 10px; "type="submit" id="header-links">Login In Again</a></h5>
+    </div>
+{% endblock %}

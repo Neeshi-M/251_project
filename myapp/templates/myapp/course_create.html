@@ -1,0 +1,14 @@
+{% extends 'myapp/base.html' %}
+{% load static %}
+{% block content %}
+    <br>
+    <br>
+    <h3>Course Creation </h3>
+    
+    <form action="" method="post">
+        <label for="course_name">Course Name:   </label>
+        <input id="course_name" type="text" name="course_name" value="{{ course_name }}">
+        <input type="submit" value="OK">
+    </form>
+
+{% endblock %}

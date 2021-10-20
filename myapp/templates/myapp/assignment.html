@@ -1,0 +1,38 @@
+{% extends 'myapp/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <h1>{{assignment.title}}</h1>
+    <br>
+    <p>Total Marks for this assignment is {{assignment.totalmarks}}</p><br>
+    <p>Download the problem statement below!!</p>
+    <br><br>
+    <a href="{{ assignment.uploadfile.url }}" download class="btn" style="color: white; background-color:blue;"type="submit"; id="header-links" >problem statement</a>
+    <br>
+    <br>
+    {% if user == assignment.related_course.user %}
+    <p>Grade Submission by uploading csv file</p>
+    <p><marker style="color: indigo; font-size: large;">Note :</marker> Make sure that uploaded csv file has username, marks, feedback as columns</p>
+    <a href="{% url 'uploadcsv' assignment.id %}" class="btn" style="color: white; background-color:green;"type="submit"; id="header-links" >Grade Submissions</a>
+    {% endif %}
+    <br>
+    
+    {% if user in assignment.related_course.users_enrolled.all %}
+    <br>
+   
+    <a href="{% url 'addsubmission' assignment.id %}" class="btn" style="color: white; background-color:hotpink;"type="submit"; id="header-links" >add new submission</a>
+    <br><br>
+    <h3 style="color: darkblue;text-align: left;">Submitted files</h3>
+    <ul>
+    {% for i in submissions %}
+        <li><ul><li>submitted by {{i.submitter.username}}:</p><a href ="{{ i.ansfile.url }}" download class="btn" style="color: white; background-color:green;"type="submit"; id="header-links" > Submitted file by {{i.submitter.username}}</a></li>
+     {% if i.marksgot == null %} <li> submission is not yet graded </li>
+     {% else %} 
+            <li> Marks Awarded to {{i.submitter.username}}: {{i.marksgot}} </li>
+     		<li> Feedback given to {{i.submitter.username}}: {{i.feedback}} </li>
+     {% endif %} 
+     </ul></li>  
+    {% endfor %}
+    </ul>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'myapp/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<br>
+<a href="{% url 'createnewcourse'  %}" class="btn" style="color: white; background-color:green;"type="submit"; id="header-links" > Add a new course</a>
+    <br><br>
+    <ul>
+
+        {% for course in data %}
+        <a href="{% url 'courseinfocreated' course.id %}" class="btn" style="color: white; background-color:blue;"type="submit"; id="header-links" > {{course.course_name}}</a>
+        <br>
+        <br>
+        <br>
+        {% endfor %}
+
+    </ul>
+    
+{% endblock %}
